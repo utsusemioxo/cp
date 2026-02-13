@@ -11,6 +11,7 @@
 #include <stack>
 #include <deque>
 #include <cmath>
+#include <array>
 #include <limits>
 
 using namespace std;
@@ -18,22 +19,25 @@ using namespace std;
 void solve() {
     int n;
     cin >> n;
+
     string s;
     cin >> s;
 
-    bool vis[26] = {};
-    int res = 0;
+    array<bool, 26> seen = {};
+    char last_seen {};
     for (char c : s) {
-        if (!vis[c - 'A']) {
-            res += 2;
-            vis[c - 'A'] = true;
+        if (!seen[c - 'A']) {
+            seen[c - 'A'] = true;
+        } else if (seen[c - 'A'] && last_seen != c) {
+            cout << "NO" << endl;
+            return;
         } else {
-            res ++;
+            
         }
+        last_seen = c;
     }
 
-    cout << res << '\n';
-
+    cout << "YES" << endl;
 }
 
 int main() {

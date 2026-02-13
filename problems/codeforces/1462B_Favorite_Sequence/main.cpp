@@ -18,22 +18,27 @@ using namespace std;
 void solve() {
     int n;
     cin >> n;
-    string s;
-    cin >> s;
 
-    bool vis[26] = {};
-    int res = 0;
-    for (char c : s) {
-        if (!vis[c - 'A']) {
-            res += 2;
-            vis[c - 'A'] = true;
-        } else {
-            res ++;
-        }
+    vector<long long> a(n);
+    for (auto &x : a) cin >> x;
+
+    vector<long long> out(n);
+
+    long long l = 0;
+    long long r = n - 1;
+    long long index = 0;
+    while (l <= r && index < n) {
+        out[index++] = a[l++];
+        if (index >= n) break;
+        out[index++] = a[r--];
+        if (index >= n) break;
+
     }
 
-    cout << res << '\n';
-
+    for (auto x : out) {
+        cout << x << " ";
+    }
+    cout << "\n";
 }
 
 int main() {
