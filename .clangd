@@ -1,0 +1,37 @@
+# .clangd (repo root)
+
+CompileFlags:
+  CompilationDatabase: ./build
+
+  # 很多项目需要加上这类默认 flags（没有也可不加）
+  Add:
+    - -std=c++20
+    - -Wall
+    - -Wextra
+    # 让 clangd 更像真实编译器（可选）
+    - -Wno-unknown-warning-option
+
+  # 避免 clangd 因为某些编译选项崩/卡（常见于交叉编译、特殊工具链）
+  Remove:
+    - -mllvm
+    - -fno-exceptions
+    - -fno-rtti
+
+Index:
+  # 常驻后台索引，速度换准确
+  Background: Build
+  # 更完整的符号信息（跳转/引用更准，稍微更吃资源）
+  StandardLibrary: true
+
+Diagnostics:
+  # 把 include 顺序等提示开着，能减少“编译能过但工程质量差”的漂移
+  UnusedIncludes: Strict
+  MissingIncludes: Strict
+
+Completion:
+  AllScopes: Yes
+
+InlayHints:
+  Enabled: true
+  ParameterNames: true
+  DeducedTypes: true
