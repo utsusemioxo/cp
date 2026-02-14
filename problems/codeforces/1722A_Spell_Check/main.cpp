@@ -15,10 +15,41 @@
 
 using namespace std;
 
+bool checkValidChar(const char c) {
+    if (c != 'T' && c != 'i' && c != 'm' && c != 'u' && c != 'r')
+        return false;
+    return true;
+}
+
 void solve() {
     int n;
     cin >> n;
-    // Your code here
+    string s;
+    cin >> s;
+    bool correct = false;    
+
+    unordered_map<char, int> stat = {};
+    if (n != 5) {
+        correct = false;
+        cout << "NO" << endl;
+        return;
+    }
+
+    for (char c : s) {
+        if (!checkValidChar(c)) {
+            cout << "NO" << endl;
+            return;
+        }
+        stat[c]++;
+    }
+
+    if (stat['T'] == 1 && stat['i'] == 1 && stat['m'] == 1 && stat['u'] == 1 && stat['r'] == 1) {
+        cout << "YES" << endl;
+        return;
+    } else {
+        cout << "NO" << endl;
+        return;
+    }
 }
 
 int main() {
