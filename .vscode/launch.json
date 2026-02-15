@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug CF (current)",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/build-debug/1703B_ICPC_Balloons",
+      "cwd": "${workspaceFolder}/problems/codeforces/1703B_ICPC_Balloons",
+      "args": [],
+      "preLaunchTask": "Build Debug",
+      "stdio": ["${workspaceFolder}/problems/codeforces/1703B_ICPC_Balloons/in.txt", null, null]
+    }
+  ]
+}
